@@ -1,0 +1,4 @@
+[INFO ] [23-03-09 13:25:44 446] [main]
+				[c.w.DefaultServerApplication:55] - Starting DefaultServerApplication using Java 17.0.6 on DESKTOP-O5GURCF with PID 33204 (D:\github\waw-spring-boot\build\classes\java\main started by kdkdn in D:\github\waw-spring-boot)
+[INFO ] [23-03-09 13:25:44 450] [main]
+				[c.w.DefaultServerApplication:640] - No active profile set, falling back to 1 default profile: "default"
