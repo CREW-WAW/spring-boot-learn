@@ -1,11 +1,12 @@
 # Spring Boot ==> Clean Architecture
 
 ## **E**nvironment
-
 * JPA
 * QueryDSL
 * Lombok
-* Swagger
+* Swagger & Open API UI
+* Thymeleaf
+
 
 ## Gradle
 
