@@ -1,4 +1,4 @@
-# Spring-Boot ==> JPA
+# Spring Boot ==> Clean Architecture
 
 
 ## **E**nvironment
@@ -8,56 +8,46 @@
 * Lombok
 * Swagger
 
-## Install
+## Gradle
 
 ```bash
 [build.gradle]
-plugins {
-  id 'com.ewerk.gradle.plugins.querydsl' version '1.0.10'
-  ...
+buildscript {
+	ext {
+		queryDslVersion = "5.0.0"
+	}
 }
+
 ...
-apply plugin: "com.ewerk.gradle.plugins.querydsl"
 ...
+
 dependencies {
-  ...
-  implementation 'mysql:mysql-connector-java:5.1.46'
-  implementation 'org.bgee.log4jdbc-log4j2:log4jdbc-log4j2-jdbc4:1.16'
-  implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:1.3.1"
-  ... 
-  compile("com.querydsl:querydsl-jpa")
-  compile("com.querydsl:querydsl-apt")
-  ...
-  implementation 'org.projectlombok:lombok'
-  annotationProcessor 'org.projectlombok:lombok'
-  ... 
-  implementation 'io.springfox:springfox-swagger2:2.6.1'
-  implementation 'io.springfox:springfox-swagger-ui:2.6.1'
-  ...
+    ...
+    ...
+	implementation "com.querydsl:querydsl-jpa:${queryDslVersion}"
+	implementation "com.querydsl:querydsl-apt:${queryDslVersion}"
+    ...
+    ...
 }
 
 // querydsl 적용
-def querydslSrcDir = 'src/main/generated'
+def querydslDir = "${rootProject.buildDir}/generated/qclass"
 
 querydsl {
-  library = "com.querydsl:querydsl-apt"
-  jpa = true
-  querydslSourcesDir = querydslSrcDir
-}
-
-compileQuerydsl{
-  options.annotationProcessorPath = configurations.querydsl
-}
-
-configurations {
-  querydsl.extendsFrom compileClasspath
+	jpa = true
+	querydslSourcesDir = querydslDir
 }
 
 sourceSets {
-  main {
-    java {
-      srcDirs = ['src/main/java', querydslSrcDir]
-    }
-  }
+	main.java.srcDir querydslDir
 }
+
+configurations {
+	querydsl.extendsFrom compileClasspath
+}
+
+compileQuerydsl {
+	options.annotationProcessorPath = configurations.querydsl
+}
+
 ```
