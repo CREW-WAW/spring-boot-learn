@@ -188,6 +188,7 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+log/spring/logs/
 .log
 
 ### STS ###
