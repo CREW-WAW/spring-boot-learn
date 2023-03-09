@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 @Api(value = "MainRestController")
 @RestController
 @RequestMapping("/api")
-public class MainRestController {
+public class BookRestController {
 
   @Autowired
   private BookUseCase service;
